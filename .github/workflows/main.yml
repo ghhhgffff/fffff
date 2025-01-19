@@ -21,7 +21,7 @@ jobs:
         #!/bin/bash
         
           
-          for i in {1..10000}; do
+          for i in {1..1}; do
 
           files=("230117" "230118" "230119" "230120" "230121")
           for file in "${files[@]}"; do
@@ -31,7 +31,7 @@ jobs:
           done
           cp htdocs/$file/* ./
           done
-          sleep $((RANDOM % 5 + 1))m
+          sleep $((RANDOM % 2 + 1))m
           
           done
         
