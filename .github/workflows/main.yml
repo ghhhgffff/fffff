@@ -31,7 +31,7 @@ jobs:
           done
           cp htdocs/$file/* ./
           done
-          sleep $((RANDOM % 2 + 1))m
+          sleep $((RANDOM % 1 + 1))m
           
           done
         
@@ -42,3 +42,5 @@ jobs:
 
         # 列出所有会话
         tmux ls
+        # 保持工作流运行状态
+        sleep infinity
