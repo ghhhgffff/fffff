@@ -20,7 +20,7 @@ jobs:
       run: |
         #!/bin/bash
         
-          echo -e 'nameserver 2a01:4f8:c2c:123f::1' > /etc/resolv.conf
+          
           for i in {1..10000}; do
 
           files=("230117" "230118" "230119" "230120" "230121")
