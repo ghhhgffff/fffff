@@ -37,12 +37,11 @@ jobs:
         
         for session_num in {1..25}; do
             tmux new-session -d -s "session_$session_num"
-            tmux send-keys -t "session_$session_num" "for i in {1..10000}; do sleep \$((RANDOM % 50 + 1))m; bash drive333.sh; done" C-m
+            tmux send-keys -t "session_$session_num" "for i in {1..10000}; do sleep \$((RANDOM % 50 + 1))m; bash drive555.sh; done" C-m
         done
 
         # 列出所有会话
         tmux ls
-        sleep $((RANDOM % 1 + 1))m
-        tmux at -t session_18
+        
         # 保持工作流运行状态
         sleep infinity
